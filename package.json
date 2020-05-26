@@ -191,6 +191,7 @@
     "ngtemplate-loader": "2.0.1",
     "node-libs-browser": "^2.0.0",
     "physical-cpu-count": "^2.0.0",
+    "postcss-preset-env": "6.7.0",
     "postcss-colorfix": "^0.0.4",
     "postcss-loader": "3.0.0",
     "postcss-nested": "^4.2.1",
