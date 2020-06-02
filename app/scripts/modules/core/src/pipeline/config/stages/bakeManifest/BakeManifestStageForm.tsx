@@ -8,6 +8,7 @@ import { ReactSelectInput } from 'core/presentation';
 import { StageConfigField } from '../common';
 import { IFormikStageConfigInjectedProps } from '../FormikStageConfig';
 import { BakeKustomizeConfigForm } from './kustomize/BakeKustomizeConfigForm';
+import { BakeCDK8SConfigForm } from './cdk8s/BakeCDK8SConfigForm';
 import { BakeHelmConfigForm } from './helm/BakeHelmConfigForm';
 import { ManifestRenderers, HELM_RENDERERS } from './ManifestRenderers';
 import { BASE_64_ARTIFACT_ACCOUNT, BASE_64_ARTIFACT_TYPE } from '../../triggers/artifacts/base64/Base64ArtifactEditor';
@@ -30,13 +31,16 @@ export function BakeManifestStageForm({ application, formik, pipeline }: IFormik
     if (stage.templateRenderer == ManifestRenderers.KUSTOMIZE && !isNil(stage.inputArtifacts)) {
       formik.setFieldValue('inputArtifacts', null);
     }
+    if (stage.templateRenderer == ManifestRenderers.CDK8S && !isNil(stage.inputArtifacts)) {
+      formik.setFieldValue('inputArtifacts', null);
+    }
     if (HELM_RENDERERS.includes(stage.templateRenderer) && !isNil(stage.inputArtifact)) {
       formik.setFieldValue('inputArtifact', null);
     }
   }, [stage.templateRenderer]);
 
   const templateRenderers = React.useMemo(() => {
-    return [...HELM_RENDERERS, ManifestRenderers.KUSTOMIZE];
+    return [...HELM_RENDERERS, ManifestRenderers.KUSTOMIZE, ManifestRenderers.CDK8S];
   }, []);
 
   return (
@@ -59,6 +63,9 @@ export function BakeManifestStageForm({ application, formik, pipeline }: IFormik
         </StageConfigField>
         {stage.templateRenderer === ManifestRenderers.KUSTOMIZE && (
           <BakeKustomizeConfigForm pipeline={pipeline} application={application} formik={formik} />
+        )}
+        {stage.templateRenderer === ManifestRenderers.CDK8S && (
+          <BakeCDK8SConfigForm pipeline={pipeline} application={application} formik={formik} />
         )}
         {HELM_RENDERERS.includes(stage.templateRenderer) && (
           <BakeHelmConfigForm pipeline={pipeline} application={application} formik={formik} />

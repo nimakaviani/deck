@@ -67,7 +67,6 @@ import { CORE_PIPELINE_CONFIG_PRECONDITIONS_PRECONDITIONS_MODULE } from './confi
 import { CORE_PIPELINE_CONFIG_PRECONDITIONS_TYPES_CLUSTERSIZE_CLUSTERSIZE_PRECONDITION_TYPE_MODULE } from './config/preconditions/types/clusterSize/clusterSize.precondition.type.module';
 import { CORE_PIPELINE_CONFIG_PRECONDITIONS_TYPES_EXPRESSION_EXPRESSION_PRECONDITION_TYPE_MODULE } from './config/preconditions/types/expression/expression.precondition.type.module';
 import './config/stages/managed/importDeliveryConfigStage';
-import './config/stages/cdk8s/cdk8sStage';
 
 export const PIPELINE_MODULE = 'spinnaker.core.pipeline';
 

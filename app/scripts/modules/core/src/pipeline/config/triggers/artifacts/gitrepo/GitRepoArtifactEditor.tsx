@@ -2,14 +2,14 @@ import { cloneDeep, get } from 'lodash';
 import React from 'react';
 
 import { ArtifactTypePatterns } from 'core/artifact';
-import { IArtifactEditorProps, IArtifactKindConfig } from 'core/domain';
+import { IArtifactEditorProps, IArtifactKindConfig, IArtifactEditorState } from 'core/domain';
 import { StageConfigField } from '../../../stages/common';
 import { SpelText } from 'core/widgets';
 import { CheckboxInput } from 'core/presentation';
 
 const TYPE = 'git/repo';
 
-interface IGitRepoArtifactEditorState {
+interface IGitRepoArtifactEditorState extends IArtifactEditorState {
   includesSubPath: boolean;
 }
 
