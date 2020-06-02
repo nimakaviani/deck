@@ -3,6 +3,9 @@ import React from 'react';
 import { IArtifact } from 'core/domain';
 import { excludeAllTypesExcept, ArtifactTypePatterns, StageArtifactSelectorDelegate } from 'core/artifact';
 import { IFormikStageConfigInjectedProps } from '../../FormikStageConfig';
+import { StageConfigField } from '../../common';
+import { ReactSelectInput } from 'core/presentation';
+import { CDK8SLanguages } from '../ManifestRenderers';
 
 export class BakeCDK8SConfigForm extends React.Component<IFormikStageConfigInjectedProps> {
   private getInputArtifact = () => {
@@ -40,6 +43,24 @@ export class BakeCDK8SConfigForm extends React.Component<IFormikStageConfigInjec
               this.props.formik.setFieldValue('inputArtifact.artifact', null);
             }}
           />
+        </div>
+
+        <div className="container-fluid form-horizontal">
+          <h4>Language Renderer</h4>
+          <StageConfigField
+            fieldColumns={3}
+            label={'CDK8S Language'}
+            helpKey={'pipeline.config.bake.manifest.languageRenderer'}
+          >
+            <ReactSelectInput
+              clearable={false}
+              onChange={(o: React.ChangeEvent<HTMLSelectElement>) => {
+                this.props.formik.setFieldValue('language', o.target.value);
+              }}
+              value={stage.language}
+              stringOptions={[CDK8SLanguages.PYTHON, CDK8SLanguages.TYPE_SCRIPT]}
+            />
+          </StageConfigField>
         </div>
       </div>
     );

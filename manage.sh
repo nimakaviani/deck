@@ -13,6 +13,7 @@ function build {
 }
 
 function push {
+  version=${1:-latest}
   docker push nimak/spinnaker-deck:$version
 }
 
